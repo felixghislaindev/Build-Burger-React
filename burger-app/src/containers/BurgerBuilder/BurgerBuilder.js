@@ -2,6 +2,9 @@ import React,{ Component } from 'react'
 import Aux from '../../hoc/Aux'
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSumary from '../../components/Burger/OrderSum/OrderSumary'
+import BackDrop from '../../components/UI/BackDrop/BackDrop'
 
 
 const INGREDIENTS_PRICE = {
@@ -20,10 +23,25 @@ class BurgerBuilder extends Component{
             cheese: 0
         },
         totalPrice: 5,
-        purchase:false
+        purchase:false,
+        purchaseClicked: false
 
     }
+    
+    purchaseCanceldHandle = () =>{
+        this.setState({
+            purchaseClicked: false
+        })
+    }
+    purchaseContinueHandle = () =>{
+        console.log('will continue')
+    }
 
+    purchaseHandle = () =>{
+        this.setState({
+            purchaseClicked:true
+        })
+    }
     updatePurchaseState(ingredients) {
        
         const sum = Object.keys(ingredients)
@@ -82,8 +100,18 @@ class BurgerBuilder extends Component{
             disableControl[key] = disableControl[key] <= 0
         }
         console.log(disableControl)
+        
         return(
             <Aux>
+            <BackDrop display = {this.state.purchaseClicked} backdropClicked = {this.purchaseCanceldHandle}/>
+            <Modal display={this.state.purchaseClicked} >
+            <OrderSumary 
+            ingredients = {this.state.ingredients}
+            price = {this.state.totalPrice}
+            continuePurchase = {this.purchaseContinueHandle}
+            cancelPurchase = {this.purchaseCanceldHandle}
+            />
+            </Modal>
             <Burger ingredients={this.state.ingredients}/>
           
            <BuildControls 
@@ -92,6 +120,7 @@ class BurgerBuilder extends Component{
            disable={disableControl}
            price = {this.state.totalPrice}
            purchase = {this.state.purchase}
+           btnClicked = {this.purchaseHandle}
            />
             </Aux>
         )

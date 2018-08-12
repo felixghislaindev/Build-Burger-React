@@ -7,7 +7,9 @@ const controls = [
     {label:'Cheese', type: 'cheese'},
     {label:'Meat', type: 'meat'},
 ]
+
 const BuildControls = (props) => {
+    
     return (
         <div className={classes.BuildControls}>
         <p>Current Price: <strong>£{props.price.toFixed(2)}</strong></p>
@@ -19,8 +21,12 @@ const BuildControls = (props) => {
                 remove ={() => props.removeIngredient(ctrl.type)}
                 disableControl = {props.disable[ctrl.type]}/>
             )}
-            <button className={classes.OrderButton}
-            disabled = {!props.purchase}>Order Now</button>
+            <button 
+            className={classes.OrderButton}
+            disabled = {!props.purchase}
+            onClick = {props.btnClicked}
+            >Order Now</button>
+            
         </div>
     );
 };
