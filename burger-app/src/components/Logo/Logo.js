@@ -3,9 +3,12 @@ import logo from '../../assets/images/burger-logo.png'
 import classes from'./Logo.css'
 
 const Logo = (props) => (
-    <div className={classes.Logo}>
+    <div className={classes.Logo} style={{
+        height : props.height,
+        marginBottom: props.margin
+    }}>
         <img src={logo} alt=""/>
-        <span>TAG Burger</span>
+        
 
     </div>
 )

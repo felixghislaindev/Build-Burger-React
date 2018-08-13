@@ -7,6 +7,7 @@ const BackDrop = (props) => {
         props.display ? <div 
         className={classes.Backdrop}
         onClick = {props.backdropClicked}
+        
         >
             
         </div>: null
