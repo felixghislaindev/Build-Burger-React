@@ -2,13 +2,14 @@ import React from 'react';
 import classes from './Toolbar.css'
 import Logo from '../../Logo/Logo'
 import NavItems from '../NavItems/NavItems';
-import SideDrawer from '../SideDrawer/SideDrawer';
+import OpenDrawer from '../../UI/Button/OpenDrawer/OpenDrawer'
+
 
 const Toolbar = (props) => {
     
     return (
         <header className = {classes.Toolbar}>
-        <div>menu</div>
+        <OpenDrawer closedState={props.closed} opendrawer={props.open}>Menu</OpenDrawer>
         <Logo height = '80%'/>
         <nav className ={classes.DesktopOnly}>
    
