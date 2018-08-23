@@ -1,0 +1,13 @@
+.OrderSumary {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+ }
+ 
+ @media (min-width) {
+     .OrderSumary {
+        
+         width: 500px;
+        
+     }
+ }
