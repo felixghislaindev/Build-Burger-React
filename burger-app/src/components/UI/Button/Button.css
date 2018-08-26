@@ -13,6 +13,9 @@
 .Button:first-of-type {
     margin-left: 0;
     padding-left: 0;
+} .Button:disabled{
+    color: #e55039;
+    cursor: not-allowed;
 }
 
 .Success {
