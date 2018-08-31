@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import Button from '../../../components/UI/Button/Button'
 import Classes from './ContactData.css'
 import axios from '../../../axios-orders'
@@ -135,8 +136,8 @@ orderHandler = (event) =>{
             }
             const order ={
                 customerinfo : customerData,
-                ingredients : this.props.ingredients,
-                totalPrice : this.props.totalPrice
+                ingredients : this.props.ings,
+                totalPrice : this.props.price
             }
             axios.post('/orders.json',order)
                  .then(response => {
@@ -194,4 +195,11 @@ orderHandler = (event) =>{
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactData) 
